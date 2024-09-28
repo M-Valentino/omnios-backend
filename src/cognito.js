@@ -1,20 +1,21 @@
-//Load aws module.
+require('dotenv').config();
 const AmazonCognitoId = require('amazon-cognito-identity-js');
 const AWS       = require('aws-sdk');
 const request   = require('request');
 const jwkToPem  = require('jwk-to-pem');
 const jwt       = require('jsonwebtoken');
 
+
 //Set fetch, because aws cognito lib was created for browsers.
 global.fetch = require('node-fetch');
 
 //Set user pool credentials.
 const poolData = {
-  UserPoolId : "us-east-1_OJcW1odYa",
-  ClientId : "1n2rvcfj25s0sfhimk7vtiue22"
+  UserPoolId : process.env.COGNITO_USER_POOL_ID,
+  ClientId : process.env.APP_CLIENT_ID
 };
 
-const aws_region = 'us-west-2';
+const aws_region = 'us-east-2';
 
 //Get user pool.
 const CognitoUserPool = AmazonCognitoId.CognitoUserPool;

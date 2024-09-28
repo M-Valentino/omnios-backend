@@ -1,39 +1,37 @@
-const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require('path');
-
-//Get routes
+const path = require("path");
 const routes = require("./routes.js");
 
-//Start Express-js
 const app = express();
-const server = http.createServer(app);
 
-app.use(express.static(path.join(__dirname, '../public')));
-
-//Add bodyparser and CORS.
+// Add bodyparser and CORS middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Start the server.
-try {
-  //Listen mode.
-  app.listen(8080, "127.0.0.1", () => {
-    console.log("Server running");
-  });
+app.use("/auth", routes);
 
-  //Assign routes controller.
-  app.use("/auth", routes);
+// Serve static files
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Start the server
+try {
+  app.listen(8080, "localhost", () => {
+    console.log("Server running on http://localhost:8080");
+  });
 } catch (err) {
-  console.log("error", err);
+  console.log("Error starting server:", err);
 }
 
+// Clean server shutdown
 const onClose = () => {
   process.exit();
 };
 
-//Handle process server.
+// Handle process server
 process.on("SIGTERM", onClose);
 process.on("SIGINT", onClose);
-process.on("uncaughtException", onClose);
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception:", err);
+  onClose();
+});

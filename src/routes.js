@@ -47,6 +47,7 @@ router.post("/signup", async (req, res) => {
 
     res.status(200).json({ result: response });
   } catch (err) {
+    console.log(err)
     res.status(400).json({ error: err });
   }
   /*
@@ -57,6 +58,7 @@ router.post("/signup", async (req, res) => {
 
 //Login request
 router.post("/login", async (req, res) => {
+  console.log('Login route hit');
   const { body } = req;
 
   //Validate request format.
@@ -70,6 +72,7 @@ router.post("/login", async (req, res) => {
       res.status(200).json({ result: result });
     } catch (err) {
       res.status(400).json({ error: err });
+      console.log(err);
     }
   } else {
     res.status(400).json({ error: "bad format" });
@@ -138,5 +141,6 @@ router.post("/changePwd", async (req, res) => {
     res.status(400).json({ error: "bad format" });
   }
 });
+
 
 module.exports = router;
