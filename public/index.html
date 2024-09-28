@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/os/system/gui.css" />
+  <link rel="stylesheet" href="/landing.css" />
+</head>
+
+<body>
+  <button id="fetchMessageBtn">Fetch Message</button>
+  <main>
+    <section class="hero">
+      <h1 class="cta">
+        Your Cloud, Your OS. Anywhere, Anytime.
+      </h1>
+      <p id="message"></p>
+    </section>
+  </main>
+  <script>
+    document.getElementById('fetchMessageBtn').addEventListener('click', function () {
+      fetch('http://localhost:8080/api/message')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('message').innerText = data;
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+
+</html>

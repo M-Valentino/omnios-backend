@@ -1,0 +1,138 @@
+<!--width="700" height="600" microIcon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbBAMAAAB/+ulmAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAC1QTFRFAAAA/AEA/SsA/lsA/kwA/RYA/AkA/5YA/6cA/3YA/2UA/j4A/SAA/2oA/3sAJNt+9AAAAA90Uk5TAP//////////////////5Y2epgAAAOlJREFUeJxjZEABjCRzBRn+fxB8D+OCeQxAAsxlFGB4zyioKHTmPZgr9vv/B0ahVKXj6z8AuYxRx96DuIw3DrwHcZX6/BkYpQ+tXH8bxBVcxGcPNE7o9DNboCYG0anl90HmSW4o3w/mivsDrRBk0WA5D+LOKHkPslFgTeUtIFdMvSQB5CJBmYpsIFfQ5sUdkIMEd94Gcz0b3D+AHKRZDeYyn2K1A+pmPPQuHshlFFUM9zMFumBT3n2QqwQ85H/Pe88gKKW2HuQFwUi92yAu668PYA+K6L2//x7kTZj3wf6Heh9I8EN5pAUsAOQBXRyos5aNAAAAAElFTkSuQmCC"-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .appSection {
+      border: 1px solid #aaa;
+      background-color: #fff;
+      padding: 8px;
+      margin-bottom: 8px;
+    }
+
+    .ml-16 {
+      margin-left: 16px;
+    }
+
+    .flexRow {
+      display: flex;
+      flex-direction: row;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body class="program">
+
+
+  <script>
+    window.top.postMessage("REQ:SS", "*");
+    window.onmessage = function (e) {
+      if (e.data.startsWith("SS:")) {
+        const stylesheet = e.data.substring(3);
+        try {
+          const styleElement = document.createElement('style');
+          styleElement.type = 'text/css';
+          styleElement.innerText = stylesheet;
+          document.head.appendChild(styleElement);
+        } catch (error) {
+          console.error("Error requesting stylesheet:", error);
+        }
+        return;
+      }
+    };
+
+    function populateAppStore(content) {
+      console.log(JSON.parse(content));
+      const appData = JSON.parse(content);
+
+      appData.map((app) => {
+        let appSection = document.createElement('div');
+        appSection.classList.add("appSection");
+        document.body.appendChild(appSection);
+
+        let appTitle = document.createElement('h2');
+        appTitle.textContent = app.name;
+        appSection.appendChild(appTitle);
+
+        let container = document.createElement('div');
+        container.classList.add("flexRow");
+        appSection.appendChild(container);
+
+        let appImage = document.createElement('img');
+        appImage.src = `/appStore${app.dir}/${app.icon}`;
+        appImage.width = 64;
+        appImage.height = 64;
+        container.appendChild(appImage);
+
+        let appDesc = document.createElement('p');
+        appDesc.textContent = app.description;
+        appDesc.classList.add("ml-16");
+        container.appendChild(appDesc);
+
+        let container2 = document.createElement('div');
+        container2.classList.add("flexRow");
+        appSection.appendChild(container2);
+
+        let appAuthor = document.createElement('div');
+        appAuthor.innerHTML = `<b>Author</b>: <a href="${app.link}" target="_blank" rel="noopener noreferrer">${app.author}</a>`;
+
+        container2.appendChild(appAuthor);
+
+        let button = document.createElement('button');
+        button.textContent = `${app.mode} ${app.name}`;
+        button.classList.add("oSButton", "osElemBase", "ml-16");
+        button.onclick = function () {
+          runInstallScript(`/appStore/${app.dir}/install.js`);
+
+        };
+        container2.appendChild(button);
+      })
+
+    }
+
+    async function runInstallScript(fileURL) {
+      try {
+        let time = new Date().getTime();
+        // Hack to disable loading from cached files
+        const response = await fetch(`${fileURL}?t=${time}`);
+        if (response.ok) {
+          const content = await response.text();
+          eval(content);
+        } else {
+          console.error(`Error fetching file ${fileURL}: HTTP status ${response.status}`);
+        }
+      } catch (err) {
+        console.error(`Error fetching file ${fileURL}: ${err}`);
+      }
+    }
+
+    async function getAppStoreData(fileURL) {
+      try {
+        let time = new Date().getTime();
+        // Hack to disable loading from cached files
+        const response = await fetch(`${fileURL}?t=${time}`);
+        if (response.ok) {
+          const content = await response.text();
+          populateAppStore(content);
+        } else {
+          console.error(`Error fetching file ${fileURL}: HTTP status ${response.status}`);
+        }
+      } catch (err) {
+        console.error(`Error fetching file ${fileURL}: ${err}`);
+      }
+    }
+
+
+    getAppStoreData("/appStore/appStoreData.json");
+
+  </script>
+</body>
+
+</html>
