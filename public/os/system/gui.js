@@ -700,6 +700,10 @@ function updateClock() {
     h -= 12;
   }
 
+  if (h === 0) {
+    h = 12;
+  }
+
   const dayOfWeek = getDayStr(today.getDay());
   const day = today.getDate();
   const month = getMonthStr(today.getMonth());
