@@ -1,6 +1,7 @@
 const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require('path');
 
 //Get routes
 const routes = require("./routes.js");
@@ -8,6 +9,8 @@ const routes = require("./routes.js");
 //Start Express-js
 const app = express();
 const server = http.createServer(app);
+
+app.use(express.static(path.join(__dirname, '../public')));
 
 //Add bodyparser and CORS.
 app.use(bodyParser.json());
