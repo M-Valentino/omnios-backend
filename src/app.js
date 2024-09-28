@@ -1,19 +1,36 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
+const http = require("http");
+const express = require("express");
+const bodyParser = require("body-parser");
 
+//Get routes
+const routes = require("./routes.js");
+
+//Start Express-js
 const app = express();
-const port = 8080;
+const server = http.createServer(app);
 
-app.use(express.static(path.join(__dirname, '../public')));
+//Add bodyparser and CORS.
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+//Start the server.
+try {
+  //Listen mode.
+  app.listen(8080, "127.0.0.1", () => {
+    console.log("Server running");
+  });
 
-// Handle 404 errors
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, '../public', '404.html'));
-});
+  //Assign routes controller.
+  app.use("/auth", routes);
+} catch (err) {
+  console.log("error", err);
+}
 
-// Start the server
-app.listen(port, function () {
-  console.log(`Live on port: ${port}!`);
-});
+const onClose = () => {
+  process.exit();
+};
+
+//Handle process server.
+process.on("SIGTERM", onClose);
+process.on("SIGINT", onClose);
+process.on("uncaughtException", onClose);
