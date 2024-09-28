@@ -1,18 +1,17 @@
-// auth.js
 const AWS = require("aws-sdk");
 const jwt = require("jsonwebtoken");
 const jwkToPem = require("jwk-to-pem");
 const axios = require("axios");
 
 const poolData = {
-  UserPoolId: "YOUR_COGNITO_USER_POOL_ID",  // Replace with your Cognito User Pool ID
-  ClientId: "YOUR_COGNITO_APP_CLIENT_ID",    // Replace with your Cognito App Client ID
+  UserPoolId: process.env.COGNITO_USER_POOL_ID,
+  ClientId: process.env.APP_CLIENT_ID,
 };
 
 // Initialize Cognito Identity Provider
 const cognito = new AWS.CognitoIdentityServiceProvider();
 
-const poolRegion = "YOUR_REGION";  // Replace with your Cognito Pool's Region
+const poolRegion = "us-east-2";
 const jwksUrl = `https://cognito-idp.${poolRegion}.amazonaws.com/${poolData.UserPoolId}/.well-known/jwks.json`;
 
 let cachedJWKs = null;
