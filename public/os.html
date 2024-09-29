@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="os/system/gui.js"></script>
+  <script src="os/system/kernel.js"></script>
 </head>
 
 <body id="screen">
@@ -13,8 +15,6 @@
       system: [
         "gui.css",
         "gui.frag.html",
-        "gui.js",
-        "kernel.js",
         "settings.json",
         "desktopBG.jpg",
         "menuShortcuts.json",
@@ -213,16 +213,6 @@
         styleElement.type = 'text/css';
         styleElement.innerText = await getFileFromDB('system/gui.css');
         document.head.appendChild(styleElement);
-
-        const kernelScript = document.createElement('script');
-        kernelScript.type = 'text/javascript';
-        kernelScript.textContent = await getFileFromDB('system/kernel.js');
-        document.body.appendChild(kernelScript);
-
-        const guiScript = document.createElement('script');
-        guiScript.type = 'text/javascript';
-        guiScript.textContent = await getFileFromDB('system/gui.js');
-        document.body.appendChild(guiScript);
 
         guiStart();
 
