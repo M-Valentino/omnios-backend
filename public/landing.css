@@ -128,9 +128,9 @@ input {
 }
 
 .bigButton:hover {
-  filter: brightness(3);
+  background-color: #252528;
   box-shadow: inset 0 0 4px var(--primColor);
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
 
 .bigButton.outlined {
