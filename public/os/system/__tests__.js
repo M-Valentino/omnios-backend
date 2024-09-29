@@ -11,7 +11,7 @@ async function evaluateTest(testFunction, message, expectedBoolean) {
 }
 
 async function _createFile(filePath) {
-  window.top.postMessage(`MK:F[${filePath}]`);
+  window.top.postMessage(`MK:F[${filePath}`);
   const isFileCreated = await waitForFileCreation(filePath);
   return isFileCreated;
 }
