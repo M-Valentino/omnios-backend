@@ -1,7 +1,6 @@
 const fileTreeStructure = {
   system: [
     "gui.css",
-    "gui.frag.html",
     "settings.json",
     "desktopBG.jpg",
     "menuShortcuts.json",
