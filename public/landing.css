@@ -19,9 +19,8 @@
 
 .cta {
   position: relative;
-  margin: auto;
   height: fit-content;
-  max-width: 50rem;
+  max-width: fit-content;
   background-color: #3b3848d0;
   padding: 5rem;
   border-radius: 5rem;
@@ -65,11 +64,11 @@
 }
 
 .paleBlue {
-  color: #ccf;
+  color: #bbf;
 }
 
 .paleRed {
-  color: #fcc;
+  color: #fbb;
 }
 
 .hero {
@@ -87,11 +86,6 @@
   font-size: 1.25rem;
   margin-bottom: 3rem;
   text-shadow: var(--smallTextShadow);
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
 }
 
 .container {
