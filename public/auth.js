@@ -31,6 +31,30 @@ if (signUpForm) {
     });
 }
 
+if (signInForm) {
+  signInForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    try {
+      const response = await fetch('/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+    if (response.ok) {
+        alert('Signed in successfully.');
+        window.location.href = 'dashboard.html'; // Redirect to sign in page
+    } else {
+        alert(data.error || 'invalid login');
+    }
+    } catch(error) {
+
+    }
+  });
+}
+
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
         localStorage.clear(); // Clear tokens
