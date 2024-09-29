@@ -2,6 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const routes = require("./routes.js");
+const codeFormat = require("./minifyOSCode");
+
+codeFormat.minifyOSCode();
 
 const app = express();
 
