@@ -5,15 +5,61 @@
 }
 
 .cta {
+  position: relative;
+  margin: auto;
   height: fit-content;
-  max-width: 42rem;
+  max-width: 50rem;
+  background-color: #3b3848d0;
+  padding: 5rem;
+  border-radius: 5rem;
+  backdrop-filter: blur(7px);
+  z-index: 1;
+  box-shadow:
+    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.056),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.081),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.1),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.119),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.144),
+    60px 60px 50px rgba(255, 0, 0, 0.3),
+    -60px -60px 50px rgba(0, 0, 255, 0.3);
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5rem;
+  padding: 1px;
+  background: linear-gradient(-45deg, #00000040 0%, #ffffff80 90%, #ffffffc0 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  /* For masking in other browsers */
+  z-index: -1;
 }
 
 .cta h1 {
   margin-bottom: 0.5rem;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 800;
   margin-top: 0;
+  text-shadow:
+    0.7px 0.7px 10px rgba(0, 0, 0, 0.093),
+    -8px -8px 32px rgba(255, 0, 0, 0.15),
+    8px 8px 32px rgba(0, 0, 255, 0.15);
+}
+
+.paleBlue {
+  color: #ccf;
+}
+
+.paleRed {
+  color: #fcc;
 }
 
 .hero {
@@ -23,6 +69,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-image: url("/os/system/desktopBG.jpg");
+  background-size: cover;
 }
 
 .hero p {
@@ -58,7 +106,7 @@ input {
   border: none;
   background-color: var(--secColorDark);
   color: var(--primColor);
-  border-radius: 0.25rem;
+  border-radius: 1rem;
   padding: 0.75rem;
   font-size: 1.75rem;
   cursor: pointer;
@@ -71,4 +119,3 @@ input {
   box-shadow: inset 0 0 3px var(--primColor);
   transition: 0.2s ease;
 }
-
