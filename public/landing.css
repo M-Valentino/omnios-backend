@@ -1,3 +1,16 @@
+:root {
+  --smallTextShadow:
+    0.1px 0.1px 0.2px rgba(0, 0, 0, 0.052),
+    0.3px 0.3px 0.6px rgba(0, 0, 0, 0.075),
+    0.6px 0.6px 1.5px rgba(0, 0, 0, 0.098),
+    2px 2px 5px rgba(0, 0, 0, 0.15);
+
+  --mediumShadow: 0.2px 0.2px 0.5px rgba(0, 0, 0, 0.052),
+    0.6px 0.6px 1.3px rgba(0, 0, 0, 0.075),
+    1.5px 1.5px 3px rgba(0, 0, 0, 0.098),
+    5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
 .flexColCenter {
   display: flex;
   flex-direction: column;
@@ -48,11 +61,7 @@
   font-size: 4rem;
   font-weight: 800;
   margin-top: 0;
-  text-shadow:
-    0.2px 0.2px 0.5px rgba(0, 0, 0, 0.052),
-    0.6px 0.6px 1.3px rgba(0, 0, 0, 0.075),
-    1.5px 1.5px 3px rgba(0, 0, 0, 0.098),
-    5px 5px 10px rgba(0, 0, 0, 0.15);
+  text-shadow: var(--mediumShadow);
 }
 
 .paleBlue {
@@ -77,11 +86,7 @@
 .hero p {
   font-size: 1.25rem;
   margin-bottom: 3rem;
-  text-shadow:
-    0.1px 0.1px 0.2px rgba(0, 0, 0, 0.052),
-    0.3px 0.3px 0.6px rgba(0, 0, 0, 0.075),
-    0.6px 0.6px 1.5px rgba(0, 0, 0, 0.098),
-    2px 2px 5px rgba(0, 0, 0, 0.15);
+  text-shadow: var(--smallTextShadow);
 }
 
 body {
@@ -120,11 +125,7 @@ input {
   margin-right: 0.5rem;
   display: inline-block;
   text-align: center;
-  box-shadow:
-    0.2px 0.2px 0.5px rgba(0, 0, 0, 0.052),
-    0.6px 0.6px 1.3px rgba(0, 0, 0, 0.075),
-    1.5px 1.5px 3px rgba(0, 0, 0, 0.098),
-    5px 5px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--mediumShadow);
 }
 
 .bigButton:hover {
@@ -138,6 +139,7 @@ input {
   border: 2px solid var(--primColor);
   /* Reduce padding to compensate for border */
   padding: calc(0.75rem - 2px);
+  text-shadow: var(--smallTextShadow);
 }
 
 .bigButton.outlined:hover {
