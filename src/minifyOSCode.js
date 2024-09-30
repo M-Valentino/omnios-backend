@@ -13,13 +13,21 @@ const minifyOSCode = () => {
   };
 
   const options = {
-    keep_fargs: true,
-    keep_fnames: true,
+    keep_fargs: true, // Keep function arguments
+    keep_fnames: true, // Preserve function names
     mangle: false,
-  };
-  const result = UglifyJS.minify(code, options);
+    compress: false,   // Disable compression
+    // ecma: "2015",
+    // beautify: false,
+};
+  const minifiedResult = UglifyJS.minify(code, options);
 
-  console.log(result.code);
+  fs.writeFile("./public/min/system_min.js", minifiedResult.code, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log("minified: " + JSON.stringify(Object.keys(code)));
+}); 
 };
 
 module.exports.minifyOSCode = minifyOSCode;

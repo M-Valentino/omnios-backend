@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./src/app.js"
+    "start": "nodemon ./src/app.js --ignore ./public/min/"
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^3.0.7",
