@@ -31,7 +31,7 @@
   justify-content: space-around;
 }
 
-.cta {
+.actionBox {
   position: relative;
   height: fit-content;
   max-width: fit-content;
@@ -43,7 +43,7 @@
   box-shadow: var(--bigShadow);
 }
 
-.cta::before {
+.actionBox::before {
   content: "";
   position: absolute;
   top: 0;
@@ -62,7 +62,7 @@
   z-index: -1;
 }
 
-.cta h1 {
+.actionBox h1 {
   margin-bottom: 0.5rem;
   font-size: 4rem;
   font-weight: 800;
