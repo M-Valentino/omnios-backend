@@ -19,7 +19,6 @@ const fileTreeStructure = {
         "Calculator.html",
         "tetrJS.html",
         "appStore.html",
-        "browser.html",
         "settings.html",
       ],
     },
