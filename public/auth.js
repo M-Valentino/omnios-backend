@@ -51,7 +51,7 @@ if (signInForm) {
         alert("Signed in successfully.");
         localStorage.setItem("authToken", JSON.stringify(data.result));
 
-        // window.location.href = "dashboard.html";
+        window.location.href = "os.html";
       } else {
         alert(data.error || "Invalid login attempt. Please try again.");
       }
