@@ -80,15 +80,17 @@ router.post("/login", async (req, res) => {
 });
 
 //Validate token
-router.get("/verify/:token", async (req, res) => {
+router.post("/verify", async (req, res) => {
+  const { body } = req;
   try {
-    if (req.params.token) {
-      let { token } = req.param;
+    if (body.token) {
+      const { token } = body;
 
       //Verify token.
       let result = await cognito.verify(token);
 
       res.status(200).json({ result: result });
+      console.log(result);
     } else {
       res.status(400).json({ error: "bad format" });
     }

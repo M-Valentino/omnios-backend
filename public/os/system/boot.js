@@ -209,6 +209,31 @@ async function boot() {
 var fileTree = {};
 async function run() {
   try {
+    const tonkenData = localStorage.getItem("authToken");
+    if (!tonkenData) {
+      window.location.href = "/login.html";
+    }
+    const token = JSON.parse(tonkenData).accesToken;
+
+    const response = await fetch("/auth/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("token ok.");
+    } else {
+      window.location.href = "/login.html";
+    }
+  } catch (error) {
+    console.error("Network error:", error);
+    
+  }
+
+  try {
     await deleteDB(); // Delete existing database before reinitializing
     await initDB();
     fileTree = await installOS(fileTreeStructure);
