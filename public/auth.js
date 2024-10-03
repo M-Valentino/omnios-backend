@@ -65,7 +65,7 @@ if (signInForm) {
 if (logoutButton) {
   logoutButton.addEventListener("click", () => {
     localStorage.clear(); // Clear tokens
-    window.location.href = "login.html"; // Redirect to sign in page
+    window.location.href = "signin.html"; // Redirect to sign in page
   });
 }
 

@@ -210,7 +210,7 @@ async function run() {
   try {
     const tonkenData = localStorage.getItem("authToken");
     if (!tonkenData) {
-      window.location.href = "/login.html";
+      window.location.href = "/signin.html";
     }
     const token = JSON.parse(tonkenData).accesToken;
 
@@ -225,7 +225,7 @@ async function run() {
     if (response.ok) {
       alert("token ok.");
     } else {
-      window.location.href = "/login.html";
+      window.location.href = "/signin.html";
     }
   } catch (error) {
     console.error("Network error:", error);
