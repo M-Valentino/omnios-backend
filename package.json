@@ -6,7 +6,7 @@
     "start": "nodemon ./src/app.js --ignore ./public/min/"
   },
   "dependencies": {
-    "amazon-cognito-identity-js": "^3.0.7",
+    "amazon-cognito-identity-js": "^6.3.12",
     "aws-sdk": "^2.1691.0",
     "dotenv": "^16.4.5",
     "express": "~4.16.1",
