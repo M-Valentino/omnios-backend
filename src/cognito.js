@@ -1,6 +1,5 @@
 require('dotenv').config();
 const AmazonCognitoId = require('amazon-cognito-identity-js');
-const AWS       = require('aws-sdk');
 const request   = require('request');
 const jwkToPem  = require('jwk-to-pem');
 const jwt       = require('jsonwebtoken');
