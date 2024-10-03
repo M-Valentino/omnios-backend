@@ -6,29 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="/os/system/gui.css" />
-  <link rel="stylesheet" href="/landing.css" />
+  <link rel="stylesheet" href="landing.css" />
 </head>
 
 <body>
-  <button id="fetchMessageBtn">Fetch Message</button>
   <main>
     <section class="hero">
-      <h1 class="cta">
-        Your Cloud, Your OS. Anywhere, Anytime.
-      </h1>
-      <p id="message"></p>
+      <div class="flexRowAround">
+        <div class="actionBox flexColCenter">
+          <h1>Your <span class="paleRed">Cloud</span>, Your <span class="paleBlue">OS</span>.<br />Anywhere, Anytime.
+          </h1>
+          <p>Easily store, share, and access your files from anywhere.<br />Our cloud storage solution offers
+            enterprise-grade
+            security and<br />scalability.</p>
+          <div>
+            <a href="/signin.html" class="bigButton">Sign In</a>
+            <a href="/signup.html" class="bigButton outlined">Sign up</a>
+          </div>
+        </div>
+        <div class="flexColCenter">
+          <img src="filesprogram.png" width="600" height="432" class="activeWindowShadow"/>
+        </div>
+      </div>
     </section>
   </main>
-  <script>
-    document.getElementById('fetchMessageBtn').addEventListener('click', function () {
-      fetch('http://localhost:8080/api/message')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('message').innerText = data;
-        })
-        .catch(error => console.error('Error:', error));
-    });
-  </script>
 </body>
 
 </html>
